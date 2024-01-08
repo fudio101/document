@@ -2,13 +2,13 @@ Sharing this for other users:
 
 ## Volume
 
-```sh
+```shell
 docker volume create redis-data
 ```
 
 ## Running
 
-```sh
+```shell
 docker run -d \
   -h redis \
   -e REDIS_PASSWORD=redis \
@@ -16,12 +16,22 @@ docker run -d \
   -p 6379:6379 \
   --name redis \
   --restart always \
-  redis:5.0.5-alpine3.9 /bin/sh -c 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}'
+  redis:latest /bin/sh -c 'redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}'
+```
+or
+```shell
+docker run -d \
+  -h redis \
+  -v redis-data:/data \
+  -p 6379:6379 \
+  --name redis \
+  --restart always \
+  redis:latest redis-server --appendonly yes --requirepass "redis"
 ```
 
 ## Remove
 
-```sh
+```shell
 docker rm -f redis
 docker volume rm redis-data
 ```
