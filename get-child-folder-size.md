@@ -12,5 +12,5 @@ Get-ChildItem -Directory |
             { $_ -gt 1KB } { '{0:0.0} KB' -f ($_ / 1KB); break }
             default { '{0:0.0} bytes' -f $_ }
         }
-    }}, FullName
+    }}, FullName | Out-Host -Paging
 ```
